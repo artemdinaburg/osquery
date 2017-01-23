@@ -77,6 +77,7 @@ if(NOT WIN32)
     add_compile_options(
       -flto
       -fsanitize=cfi
+      -fsanitize-cfi-cross-dso
       -fvisibility=default
       -D_GLIBCXX_USE_CXX11_ABI=1
     )
@@ -291,7 +292,7 @@ if(WINDOWS)
 else()
   if (CMAKE_CXX_COMPILER MATCHES "clang")
     # Clang on Unix uses LTO; we also need to pass -flto when linking
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -D_GLIBCXX_USE_CXX11_ABI=1 -fsanitize=cfi -fvisibility=default -flto")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -D_GLIBCXX_USE_CXX11_ABI=1 -fsanitize=cfi -fsanitize-cfi-cross-dso -fvisibility=default -flto")
   endif()
 
 endif()
