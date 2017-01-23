@@ -22,37 +22,36 @@ end
 class Llvm < AbstractOsqueryFormula
   desc "Next-gen compiler infrastructure"
   homepage "http://llvm.org/"
-  revision 2
 
   stable do
-    url "http://llvm.org/releases/3.8.1/llvm-3.8.1.src.tar.xz"
-    sha256 "6e82ce4adb54ff3afc18053d6981b6aed1406751b8742582ed50f04b5ab475f9"
+    url "http://llvm.org/releases/3.9.1/llvm-3.9.1.src.tar.xz"
+    sha256 "1fd90354b9cf19232e8f168faf2220e79be555df3aa743242700879e8fd329ee"
 
     resource "clang" do
-      url "http://llvm.org/releases/3.8.1/cfe-3.8.1.src.tar.xz"
-      sha256 "4cd3836dfb4b88b597e075341cae86d61c63ce3963e45c7fe6a8bf59bb382cdf"
+      url "http://llvm.org/releases/3.9.1/cfe-3.9.1.src.tar.xz"
+      sha256 "e6c4cebb96dee827fa0470af313dff265af391cb6da8d429842ef208c8f25e63"
     end
 
     resource "clang-extra-tools" do
-      url "http://llvm.org/releases/3.8.1/clang-tools-extra-3.8.1.src.tar.xz"
-      sha256 "664a5c60220de9c290bf2a5b03d902ab731a4f95fe73a00856175ead494ec396"
+      url "http://llvm.org/releases/3.9.1/clang-tools-extra-3.9.1.src.tar.xz"
+      sha256 "29a5b65bdeff7767782d4427c7c64d54c3a8684bc6b217b74a70e575e4813635"
     end
 
     resource "compiler-rt" do
-      url "http://llvm.org/releases/3.8.1/compiler-rt-3.8.1.src.tar.xz"
-      sha256 "0df011dae14d8700499dfc961602ee0a9572fef926202ade5dcdfe7858411e5c"
+      url "http://llvm.org/releases/3.9.1/compiler-rt-3.9.1.src.tar.xz"
+      sha256 "d30967b1a5fa51a2503474aacc913e69fd05ae862d37bf310088955bdb13ec99"
     end
 
     resource "polly" do
-      url "http://llvm.org/releases/3.8.1/polly-3.8.1.src.tar.xz"
-      sha256 "453c27e1581614bb3b6351bf5a2da2939563ea9d1de99c420f85ca8d87b928a2"
+      url "http://llvm.org/releases/3.9.1/polly-3.9.1.src.tar.xz"
+      sha256 "9ba5e61fc7bf8c7435f64e2629e0810c9b1d1b03aa5b5605b780d0e177b4cb46"
     end
   end
 
   bottle do
     root_url "https://osquery-packages.s3.amazonaws.com/bottles"
     cellar :any_skip_relocation
-    sha256 "413eb81e07ea61bc3dc99ecb95fa4fce9cd087080259b342a0b3f7f1fe4808c8" => :x86_64_linux
+    sha256 "5abdedf0b94e6dd00ab51373d06564f71bb3aed08a216a5ba6fd3f646dd054bc" => :x86_64_linux
   end
 
   head do
