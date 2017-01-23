@@ -82,7 +82,7 @@ if(NOT WIN32)
       -fno-sanitize-trap=all
       -fvisibility=default
       -D_GLIBCXX_USE_CXX11_ABI=1
-      -fsanitize-blacklist=${CFI_BLACKLIST}
+#      -fsanitize-blacklist=${CFI_BLACKLIST}
     )
   endif()
 endif()
