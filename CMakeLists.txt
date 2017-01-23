@@ -74,12 +74,15 @@ if(NOT WIN32)
   )
   if (CMAKE_CXX_COMPILER MATCHES "clang")
     # Only enale LTO builds when using clang on Unix, for now
+    set(CFI_BLACKLIST "${CMAKE_SOURCE_DIR}/tools/analysis/cfi_blacklist.txt")
     add_compile_options(
       -flto
       -fsanitize=cfi
       -fsanitize-cfi-cross-dso
+      -fno-sanitize-trap=all
       -fvisibility=default
       -D_GLIBCXX_USE_CXX11_ABI=1
+      -fsanitize-blacklist=${CFI_BLACKLIST}
     )
   endif()
 endif()
@@ -292,7 +295,7 @@ if(WINDOWS)
 else()
   if (CMAKE_CXX_COMPILER MATCHES "clang")
     # Clang on Unix uses LTO; we also need to pass -flto when linking
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -D_GLIBCXX_USE_CXX11_ABI=1 -fsanitize=cfi -fsanitize-cfi-cross-dso -fvisibility=default -flto")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -D_GLIBCXX_USE_CXX11_ABI=1 -fsanitize-blacklist=${CFI_BLACKLIST} -fno-sanitize-trap=all -fsanitize=cfi -fsanitize-cfi-cross-dso -fvisibility=default -flto")
   endif()
 
 endif()
