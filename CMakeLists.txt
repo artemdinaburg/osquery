@@ -76,6 +76,8 @@ if(NOT WIN32)
     # Only enale LTO builds when using clang on Unix, for now
     add_compile_options(
       -flto
+      -fvisibility=default
+      -D_GLIBCXX_USE_CXX11_ABI=1
     )
   endif()
 endif()
@@ -288,7 +290,7 @@ if(WINDOWS)
 else()
   if (CMAKE_CXX_COMPILER MATCHES "clang")
     # Clang on Unix uses LTO; we also need to pass -flto when linking
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -flto")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -D_GLIBCXX_USE_CXX11_ABI=1 -fvisibility=default -flto")
   endif()
 
 endif()

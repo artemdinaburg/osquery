@@ -5,6 +5,7 @@ class AwsSdkCpp < AbstractOsqueryFormula
   homepage "https://github.com/aws/aws-sdk-cpp"
   url "https://github.com/aws/aws-sdk-cpp/archive/0.14.4.tar.gz"
   sha256 "2e935275c6f7eb25e7d850b354344c92cacb7c193b708ec64ffce10ec6afa7f4"
+  revision 1
 
   bottle do
     root_url "https://osquery-packages.s3.amazonaws.com/bottles"
@@ -18,6 +19,7 @@ class AwsSdkCpp < AbstractOsqueryFormula
 
   def install
     ENV.cxx11
+    ENV.append_to_cflags "-D_GLIBCXX_USE_CXX11_ABI=1"
 
     inreplace "CMakeLists.txt", "${CMAKE_CXX_FLAGS_RELEASE} -s", "${CMAKE_CXX_FLAGS_RELEASE}"
 

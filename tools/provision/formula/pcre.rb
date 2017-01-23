@@ -6,6 +6,7 @@ class Pcre < AbstractOsqueryFormula
   url "https://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.38.tar.bz2"
   mirror "https://www.mirrorservice.org/sites/downloads.sourceforge.net/p/pc/pcre/pcre/8.38/pcre-8.38.tar.bz2"
   sha256 "b9e02d36e23024d6c02a2e5b25204b3a4fa6ade43e0a5f869f254f49535079df"
+  revision 1
 
   bottle do
     root_url "https://osquery-packages.s3.amazonaws.com/bottles"
@@ -36,6 +37,7 @@ class Pcre < AbstractOsqueryFormula
 
   def install
     ENV.universal_binary if build.universal?
+    ENV.append_to_cflags "-D_GLIBCXX_USE_CXX11_ABI=1"
 
     system "./autogen.sh" if build.head?
     system "./configure", "--disable-dependency-tracking",

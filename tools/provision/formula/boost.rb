@@ -6,6 +6,7 @@ class Boost < AbstractOsqueryFormula
   url "https://downloads.sourceforge.net/project/boost/boost/1.60.0/boost_1_60_0.tar.bz2"
   sha256 "686affff989ac2488f79a97b9479efb9f2abae035b5ed4d8226de6857933fd3b"
   head "https://github.com/boostorg/boost.git"
+  revision 1
 
   # Handle compile failure with boost/graph/adjacency_matrix.hpp
   # https://github.com/Homebrew/homebrew/pull/48262
@@ -42,6 +43,7 @@ class Boost < AbstractOsqueryFormula
   def install
     ENV.cxx11
     ENV.universal_binary if build.universal?
+    
 
     # Force boost to compile with the desired compiler
     open("user-config.jam", "a") do |file|
@@ -75,6 +77,7 @@ class Boost < AbstractOsqueryFormula
       "link=static",
       "optimization=space",
       "variant=release",
+      "define=_GLIBCXX_USE_CXX11_ABI=1"
     ]
 
     # Trunk starts using "clang++ -x c" to select C compiler which breaks C++11
